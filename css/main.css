@@ -1,0 +1,40 @@
+* {
+    // outline: 1px gray solid;
+    max-width: 1257px;
+    margin: auto;
+}
+html{
+    height: 100%;
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+h1 {
+    text-align: center;
+    color: blue;
+}
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    background-color: lightgray;
+}
+.theGameCanvas {
+    text-align: center;
+    background: lightblue;
+}
+#mySnakeCanvas {
+    background: black;
+}
+#theFooter{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    text-align: center;
+}
