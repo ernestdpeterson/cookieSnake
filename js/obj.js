@@ -18,6 +18,12 @@ function randSpot() {
 function Food() {
     this.x = randSpot();
     this.y = randSpot();
+
+
+    // work on keeping the food from manifesting inside the snake's tail
+    this.positionCheck = function(xPosition, yPosition) {
+    }
+
     this.createFood = function() {
         if (
             (snake.x + 10) > (food.x - 5) &&
@@ -29,13 +35,19 @@ function Food() {
             segments.push("1");
             this.x = randSpot();
             this.y = randSpot();
+        for (var a = snake.tail.length - 1; a >= 0; a--) {
+            console.log(this.x, this.y);
+            if (this.x >= (snake.tail[a][0] - 5) &&
+                this.x <= (snake.tail[a][0] + 5) &&
+                this.y >= (snake.tail[a][1] - 5) &&
+                this.y <= (snake.tail[a][1] +5)) {
+                a = snake.tail.length;
+                this.x=randSpot();
+                this.y=randSpot();
+            }
         }
-        // work on keeping the food from manifesting inside the snake's tail
-        // for (var i = snake.tail.length - 1; i >= 0; i--) {
-        //     if(snake.tail[i] == randomSpot){
-        //         randSpot();
-        //     }
-        // }
+            console.log("position checked");
+        }
 
         ctx.beginPath();
         ctx.arc(this.x, this.y, 5, 0*Math.PI, 2*Math.PI);
@@ -96,6 +108,7 @@ function Snake() {
         ctx.rect(this.x, this.y, 10, 10);
         ctx.fillStyle = "white";
         ctx.fill();
+
         $("#theScore").html((this.tail.length/10));
     }
 

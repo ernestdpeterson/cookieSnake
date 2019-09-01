@@ -2,8 +2,8 @@ var snake = new Snake;
 var food = new Food;
 var canvasElement = document.getElementById("mySnakeCanvas");
 var ctx = canvasElement.getContext("2d");
-var sideHight = canvasElement.clientHeight;
-var sideWidth = canvasElement.clientWidth;
+// var sideHight = canvasElement.clientHeight;
+// var sideWidth = canvasElement.clientWidth;
 
 document.addEventListener("keydown", function(event) {
     if (event.keyCode === 38 && snake.yDirection !== 1) {
@@ -19,7 +19,6 @@ document.addEventListener("keydown", function(event) {
 
 function draw() {
     food.createFood();
-    snake.clear();
     snake.update();
     snake.show();
     requestAnimationFrame(draw);
