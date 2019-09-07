@@ -66,15 +66,32 @@ function Snake() {
     this.segments = segments;
     this.tail = [];
 
+    this.collision = function() {
+
+        for (var i = this.tail.length - 20; i >= 0; i--) {
+            if (this.tail[i] == undefined) {
+                return;
+            } else if (this.tail[i][0] == this.x &&
+                this.tail[i][1] == this.y) {
+
+                this.x = randSpot();
+                this.y = randSpot();
+                this.xDirection =0;
+                this.yDirection =0;
+                this.reset();
+                $(".offscreen").css("right", "14em");
+            }
+        }
+    }
+
     this.reset = function() {
-        this.xDirection =0;
-        this.yDirection =0;
         segments = [1];
         this.segments = segments;
         for (var o = this.tail.length - 1; o >= 0; o--) {
             this.clear(this.tail[0][0], this.tail[0][1])
             this.tail.shift();
         }
+        $(".offscreen").css("right", "400em");
     }
 
     this.clear = function(theX, theY) {
@@ -111,6 +128,7 @@ function Snake() {
         theGradient.addColorStop(1, "lightgreen");
 
         this.tail.push([this.x, this.y]);
+
         //manage the tails length
         if (this.tail.length > (this.segments.length*10)) {
             this.clear(this.tail[0][0], this.tail[0][1])

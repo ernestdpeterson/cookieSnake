@@ -16,17 +16,6 @@ document.addEventListener("keydown", function(event) {
         snake.move(-1, 0);
     }
 });
-    var itterator = [];
-
-$("#testButton").click(function() {
-    if(itterator.length == 0){
-        $(".offscreen").css("right", "14em");
-        itterator.push("1");
-    } else if(itterator.length ==1){
-        $(".offscreen").css("right", "400em");
-        itterator.shift();
-    }
-});
 
 $(".gameButton").click(function() {
     snake.reset();
@@ -36,6 +25,7 @@ function draw() {
     food.createFood();
     snake.update();
     snake.show();
+    snake.collision();
     requestAnimationFrame(draw);
 }
 
