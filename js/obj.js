@@ -3,6 +3,7 @@
 var x = 0;
 var y = 0;
 var segments = [1];
+var maxScore;
 
 function randSpot() {
     var randomSpot = Math.floor(Math.random()*600);
@@ -19,11 +20,6 @@ function Food() {
     this.x = randSpot();
     this.y = randSpot();
 
-
-    // work on keeping the food from manifesting inside the snake's tail
-    this.positionCheck = function(xPosition, yPosition) {
-    }
-
     this.createFood = function() {
         if (
             (snake.x + 10) > (food.x - 5) &&
@@ -35,18 +31,16 @@ function Food() {
             segments.push("1");
             this.x = randSpot();
             this.y = randSpot();
-        for (var a = snake.tail.length - 1; a >= 0; a--) {
-            console.log(this.x, this.y);
-            if (this.x >= (snake.tail[a][0] - 5) &&
-                this.x <= (snake.tail[a][0] + 5) &&
-                this.y >= (snake.tail[a][1] - 5) &&
-                this.y <= (snake.tail[a][1] +5)) {
-                a = snake.tail.length;
-                this.x=randSpot();
-                this.y=randSpot();
+            for (var a = snake.tail.length - 1; a >= 0; a--) {
+                if (this.x >= (snake.tail[a][0] - 5) &&
+                    this.x <= (snake.tail[a][0] + 5) &&
+                    this.y >= (snake.tail[a][1] - 5) &&
+                    this.y <= (snake.tail[a][1] +5)) {
+                    a = snake.tail.length;
+                    this.x=randSpot();
+                    this.y=randSpot();
+                }
             }
-        }
-            console.log("position checked");
         }
 
         ctx.beginPath();
@@ -71,6 +65,17 @@ function Snake() {
     this.yDirection = this.y;
     this.segments = segments;
     this.tail = [];
+
+    this.reset = function() {
+        this.xDirection =0;
+        this.yDirection =0;
+        segments = [1];
+        this.segments = segments;
+        for (var o = this.tail.length - 1; o >= 0; o--) {
+            this.clear(this.tail[0][0], this.tail[0][1])
+            this.tail.shift();
+        }
+    }
 
     this.clear = function(theX, theY) {
         ctx.beginPath();
@@ -98,7 +103,15 @@ function Snake() {
     }
 
     this.show = function() {
+        var theScore = this.tail.length/10;
+
+        //color the sanke
+        var theGradient = ctx.createLinearGradient(this.x, this.y, this.x+10, this.y+10);
+        theGradient.addColorStop(0, "green");
+        theGradient.addColorStop(1, "lightgreen");
+
         this.tail.push([this.x, this.y]);
+        //manage the tails length
         if (this.tail.length > (this.segments.length*10)) {
             this.clear(this.tail[0][0], this.tail[0][1])
             this.tail.shift();
@@ -106,10 +119,19 @@ function Snake() {
 
         ctx.beginPath();
         ctx.rect(this.x, this.y, 10, 10);
-        ctx.fillStyle = "white";
+        ctx.fillStyle = theGradient;
         ctx.fill();
 
-        $("#theScore").html((this.tail.length/10));
+        $("#theScore").html(theScore);
+
+        if (maxScore >= theScore) {
+            $("#maxScore").html(maxScore);
+        } else {
+            maxScore = theScore;
+            $("#maxScore").html(maxScore);
+        }
+        
+
     }
 
     this.move = function(xdir, ydir) {

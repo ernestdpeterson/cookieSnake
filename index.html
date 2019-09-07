@@ -10,12 +10,27 @@
 </head>
 <body>
 
-    <header><h1>The Cookie Snake Game</h1></header>
-    <section><h2>Your Snakes Length: <span id="theScore"></span></h2></section>
+    <header><h1>The Cookie Snake Game <button id="testButton">Test Button</button></h1></header>
+    <section class="offscreen">
+        <h2>Game Over</h2>
+        <p class="scoreText">
+            Your score is: <span id="finalScore"></span>
+        </p>
+        <button class="gameButton">Start Again?</button>
+    </section>
+    <section>
+        <h2>Your Snakes Length: <span id="theScore"></span></h2>
+    </section>
     <section class="theGameCanvas">
         <canvas id="mySnakeCanvas" width="600" height="600"></canvas>
     </section>
-    <footer id="theFooter"><h3>Some cool text in the footer.</h3></footer>
+    <section>
+        <h2>Max Snakes Length: <span id="maxScore"></span></h2>
+    </section>
+
+    <footer id="theFooter">
+        <h3>Some cool text in the footer.</h3>
+    </footer>
 
 <script src="js/obj.js"></script>
 <script src="js/main.js"></script>

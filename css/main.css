@@ -15,6 +15,37 @@ html{
 h1 {
     text-align: center;
     color: blue;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+.offscreen{
+    background: #08b6ef;
+    border-radius: 20px;
+    height: 200px;
+    position: absolute;
+    text-align: center;
+    top: 15em;
+    transition: right 1s;
+    right: 400em;
+    width: 40em;
+    -webkit-transition: right 1s;
+    z-index: 1000;
+}
+.scoreText{
+    background: lightgray;
+    border-radius: 10px;
+    color: green;
+    font-size: 25px;
+    font-weight: bolder;
+    margin-top: 20px;
+    padding: 20px 0 20px 0;
+    width: 50%;
+}
+.gameButton{
+    background: #6767f7;
+    border-radius: 10px;
+    font-size: 25px;
+    margin-top: 40px;
 }
 body {
     position: relative;
