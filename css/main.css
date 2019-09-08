@@ -27,7 +27,7 @@ h1 {
     top: 15em;
     transition: right 1s;
     right: 400em;
-    width: 40em;
+    width: 100%;
     -webkit-transition: right 1s;
     z-index: 1000;
 }
@@ -40,6 +40,12 @@ h1 {
     margin-top: 20px;
     padding: 20px 0 20px 0;
     width: 50%;
+}
+.onscreenScores{
+    color: mediumseagreen;
+}
+.scoreNumber{
+    color: #4b7b04;
 }
 .gameButton{
     background: #6767f7;
@@ -60,6 +66,9 @@ body {
 }
 #mySnakeCanvas {
     background: black;
+}
+ul{
+    list-style-type: none;
 }
 #theFooter{
     position: absolute;

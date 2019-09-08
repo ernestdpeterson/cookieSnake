@@ -17,11 +17,35 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
+function borderLine() {
+    ctx.beginPath();
+    ctx.moveTo(1, 1);
+    ctx.lineTo(1, 599);
+    ctx.lineTo(599, 599);
+    ctx.lineTo(599, 1);
+    ctx.lineTo(1, 1);
+    ctx.strokeStyle = "orange";
+    ctx.stroke();
+}
+
 $(".gameButton").click(function() {
     snake.reset();
 });
 
+if (window.innerWidth < 600) {
+    window.alert("Window is too small to play this game. Minimum width is 600 pixels.");
+}
+
+if (window.innerHeight < 831) {
+    window.alert("Window is too small to play this game. Minimum height is 830 pixels.");
+}
+
+if (typeof window.orientation != "undefined" || navigator.userAgent.indexOf('IEMobile') != -1) {
+    window.aler("Mobile devices not supported for this game.")
+}
+
 function draw() {
+    borderLine();
     food.createFood();
     snake.update();
     snake.show();

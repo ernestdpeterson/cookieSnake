@@ -10,7 +10,8 @@
 </head>
 <body>
 
-    <header><h1>The Cookie Snake Game</h1></header>
+    <header><h1>The Cookie Snake</h1></header>
+
     <section class="offscreen">
         <h2>Game Over</h2>
         <p class="scoreText">
@@ -18,18 +19,34 @@
         </p>
         <button class="gameButton">Start Again?</button>
     </section>
+
     <section>
-        <h2>Your Snakes Length: <span id="theScore"></span></h2>
+        <h2 class="onscreenScores">
+            Your Snakes Length: <span id="theScore" class="scoreNumber"></span>
+        </h2>
     </section>
+
     <section class="theGameCanvas">
-        <canvas id="mySnakeCanvas" width="600" height="600"></canvas>
+        <canvas id="mySnakeCanvas" width="600" height="600">
+            Your browser does not support the canvas element.
+        </canvas>
     </section>
+
     <section>
-        <h2>Max Snakes Length: <span id="maxScore"></span></h2>
+        <h2 class="onscreenScores">
+            Max Snakes Length: <span id="maxScore" class="scoreNumber"></span>
+        </h2>
     </section>
 
     <footer id="theFooter">
-        <h3>Some cool text in the footer.</h3>
+        <h3>
+            <ul>
+                <li>DIRECTIONS:</li>
+                <li>Use the arrow keys to navigate your snake to the cookie.</li>
+                <li>Snake can not reverse direction.</li>
+                <li>Game over if you hit your tail or the edges.</li>
+            </ul>
+        </h3>
     </footer>
 
 <script src="js/obj.js"></script>

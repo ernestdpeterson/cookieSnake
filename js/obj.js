@@ -4,6 +4,8 @@ var x = 0;
 var y = 0;
 var segments = [1];
 var maxScore;
+var finalScore;
+var speedIncrease = 1;
 
 function randSpot() {
     var randomSpot = Math.floor(Math.random()*600);
@@ -59,10 +61,11 @@ function Food() {
 }
 
 function Snake() {
-    this.x = x;
-    this.y = y;
-    this.xDirection = this.x;
-    this.yDirection = this.y;
+        this.x = randSpot();
+        this.y = randSpot();
+        this.xDirection = 0;
+        this.yDirection = 0;
+
     this.segments = segments;
     this.tail = [];
 
@@ -71,16 +74,27 @@ function Snake() {
         for (var i = this.tail.length - 20; i >= 0; i--) {
             if (this.tail[i] == undefined) {
                 return;
-            } else if (this.tail[i][0] == this.x &&
-                this.tail[i][1] == this.y) {
+            } else if ((this.tail[i][0] +10) > this.x &&
+                this.tail[i][0] < (this.x + 10) &&
+                (this.tail[i][1] + 10) > this.y &&
+                this.tail[i][1] < (this.y +10)) {
 
+                this.x = randSpot();
+                this.y = randSpot();
+                this.xDirection = 0;
+                this.yDirection = 0;
+                $(".offscreen").css("right", "0em");
+            }
+        }
+        if (this.x == 0 || 
+            this.x >= 590 || 
+            this.y == 0 || 
+            this.y >= 590) {
                 this.x = randSpot();
                 this.y = randSpot();
                 this.xDirection =0;
                 this.yDirection =0;
-                this.reset();
-                $(".offscreen").css("right", "14em");
-            }
+                $(".offscreen").css("right", "0em");
         }
     }
 
@@ -102,25 +116,12 @@ function Snake() {
     }
 
     this.update = function() {
-        if (this.x == -1) {
-            this.x = 0;
-        }
-        if (this.x >= (590)) {
-            this.x = 590;
-        }
-        if (this.y == -1) {
-            this.y = 0;
-        }
-        if (this.y >= (590)) {
-            this.y = 590;
-        }
-
-        this.x = this.x + (this.xDirection);
-        this.y = this.y + (this.yDirection);
+        this.x = this.x + this.xDirection;
+        this.y = this.y + this.yDirection;
     }
 
     this.show = function() {
-        var theScore = this.tail.length/10;
+        var theScore = (this.tail.length / 10) - 1;
 
         //color the sanke
         var theGradient = ctx.createLinearGradient(this.x, this.y, this.x+10, this.y+10);
@@ -140,7 +141,7 @@ function Snake() {
         ctx.fillStyle = theGradient;
         ctx.fill();
 
-        $("#theScore").html(theScore);
+        $("#theScore, #finalScore").html(theScore);
 
         if (maxScore >= theScore) {
             $("#maxScore").html(maxScore);

@@ -9,5 +9,4 @@
 
 ## Issues
 
-I haven't finished it yet.
 This is not for mobile devices.
