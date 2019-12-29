@@ -7,6 +7,7 @@
 ### Don't hit the edge or your own tail.
 ### :sunglasses: Enjoy.
 
-## Issues
 
-This is not for mobile devices.
+## Issues:
+
+This game is not for mobile devices.
